@@ -6,6 +6,7 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import routes from "./routes";
+import store from "../store";
 
 /*
  * If not building with SSR mode, you can
@@ -39,6 +40,8 @@ export default route(function (/* { store, ssrContext } */) {
     const publicPages = "/";
     const authRequired = !publicPages.includes(to.path);
     let loggedIn = true;
+    //const storeTemp = require("../store");
+    //console.log(store().getters["users/getLogUsers"]);
     /*
     if (users.state.loggedUser === null) {
       loggedIn = false;
