@@ -27,18 +27,7 @@ export default defineComponent({
   },
   data() {
     return {
-      adminTest: [
-        {
-          title: "Clean the kitchen",
-          description:
-            "Mop the floor, wipe the countertop and don't forget to take out the trash!",
-        },
-        { title: "Call Mom", description: "It's her birthday!" },
-        {
-          title: "Water flowers",
-          description: "They need water, or they will die.",
-        },
-      ],
+      adminTest: [],
     };
   },
   methods: {
@@ -48,12 +37,12 @@ export default defineComponent({
       ).then((response) => {
         this.$store.commit("users/addAdminData", response.data);
         console.log(JSON.stringify(response.data));
-        return response.data;
+        this.adminTest = response.data;
       });
     },
-    async getAdminData() {
-      return this.getAdminDataAxios();
-    },
+  },
+  mounted() {
+    this.getAdminDataAxios();
   },
 });
 </script>

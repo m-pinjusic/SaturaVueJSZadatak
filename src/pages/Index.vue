@@ -54,6 +54,7 @@ const columns = [
 export default defineComponent({
   name: "PageIndex",
   methods: {},
+
   setup() {
     return {
       columns,
@@ -80,7 +81,6 @@ export default defineComponent({
           (x) => x.id == this.selected[0].id
         ),
       };
-
       if (this.selected[0].email.slice(this.selected.length - 4) == "net") {
         Object.assign(loggedUser, { admin: true });
       } else {
