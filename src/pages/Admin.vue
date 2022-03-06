@@ -32,20 +32,13 @@ export default defineComponent({
   },
   methods: {
     async getAdminDataAxios() {
-      if (
-        Object.keys(this.$store.getters["users/getLogUser"]).length === 0 &&
-        this.$store.getters["users/getLogUser"].constructor === Object
-      ) {
-        await axios(
-          "https://run.mocky.io/v3/9571eb2c-56a7-46cc-80bf-9c1e341f1270"
-        ).then((response) => {
-          this.$store.commit("users/addAdminData", response.data);
-          console.log(JSON.stringify(response.data));
-          this.adminTest = response.data;
-        });
-      } else {
-        this.adminTest = this.$store.getters["users/getLogUser"];
-      }
+      await axios(
+        "https://run.mocky.io/v3/9571eb2c-56a7-46cc-80bf-9c1e341f1270"
+      ).then((response) => {
+        this.$store.commit("users/addAdminData", response.data);
+        console.log(JSON.stringify(response.data));
+        this.adminTest = response.data;
+      });
     },
   },
   mounted() {

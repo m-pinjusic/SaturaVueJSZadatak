@@ -6,7 +6,6 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import routes from "./routes";
-import store from "../store";
 
 /*
  * If not building with SSR mode, you can
@@ -39,9 +38,15 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from, next) => {
     const publicPages = "/";
     const authRequired = !publicPages.includes(to.path);
-    let loggedIn = false;
+    let loggedIn = true;
+    /*
+    if (users.state.loggedUser === null) {
+      loggedIn = false;
+    } else {
+      loggedIn = true;
+    }
+    */
     //const storeTest = this.$store.getters["users/getLogUser"];
-    console.log(store);
     // trying to access a restricted page + not logged in
     // redirect to login page
     if (authRequired && !loggedIn) {

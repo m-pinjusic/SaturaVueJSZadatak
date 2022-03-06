@@ -109,6 +109,7 @@ export default {
       ).then((response) => {
         this.users;
         this.$store.commit("users/addUsers", response.data);
+        console.log("storeLOg", this.$store);
       });
     },
     loggout() {
