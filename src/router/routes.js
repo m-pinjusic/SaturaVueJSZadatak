@@ -7,12 +7,12 @@ const routes = [
       {
         path: "/users",
         component: () => import("pages/Index.vue"),
-        meta: { requiresAuth: true },
       },
       {
         path: "/about",
         component: () => import("pages/About.vue"),
         name: "About",
+        meta: { requiresAuth: true },
       },
       {
         path: "admin",

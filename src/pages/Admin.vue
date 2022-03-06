@@ -27,33 +27,29 @@ export default defineComponent({
   },
   data() {
     return {
-      adminTest: [
-        {
-          title: "Clean the kitchen",
-          description:
-            "Mop the floor, wipe the countertop and don't forget to take out the trash!",
-        },
-        { title: "Call Mom", description: "It's her birthday!" },
-        {
-          title: "Water flowers",
-          description: "They need water, or they will die.",
-        },
-      ],
+      adminTest: [],
     };
   },
   methods: {
     async getAdminDataAxios() {
-      await axios(
-        "https://run.mocky.io/v3/9571eb2c-56a7-46cc-80bf-9c1e341f1270"
-      ).then((response) => {
-        this.$store.commit("users/addAdminData", response.data);
-        console.log(JSON.stringify(response.data));
-        return response.data;
-      });
+      if (
+        Object.keys(this.$store.getters["users/getLogUser"]).length === 0 &&
+        this.$store.getters["users/getLogUser"].constructor === Object
+      ) {
+        await axios(
+          "https://run.mocky.io/v3/9571eb2c-56a7-46cc-80bf-9c1e341f1270"
+        ).then((response) => {
+          this.$store.commit("users/addAdminData", response.data);
+          console.log(JSON.stringify(response.data));
+          this.adminTest = response.data;
+        });
+      } else {
+        this.adminTest = this.$store.getters["users/getLogUser"];
+      }
     },
-    async getAdminData() {
-      return this.getAdminDataAxios();
-    },
+  },
+  mounted() {
+    this.getAdminDataAxios();
   },
 });
 </script>
